@@ -1,0 +1,339 @@
+<!-- © 2026 All rights reserved. Protected under US copyright law. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Sentinel Color | Sentinels Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #2a2a2a;
+    --text: #b4a96b;
+    --text-dim: #b4a96b;
+    --accent: #6c1c68;
+    --text-light: #d6d8d6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.07) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.08) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 90%, rgba(255,255,255,0.05) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 50%, rgba(255,255,255,0.07) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 60%, rgba(255,255,255,0.07) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 50px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.4s;
+  }
+
+  .color-section {
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.8s;
+  }
+
+  .color-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .color-swatch {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.4);
+    opacity: 0;
+    animation: swellIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 1s;
+  }
+
+  .comparison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.4s;
+    flex-wrap: wrap;
+  }
+
+  .color-block { text-align: center; }
+
+  .swatch-small {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  }
+
+  .swatch-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .divider-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--text-dim), transparent);
+  }
+
+  .proximity-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 50px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.8s;
+  }
+
+  .footer-text {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+    max-width: 460px;
+    margin: 0 auto 60px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2.2s;
+  }
+
+  .footer-text a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .quote {
+    max-width: 500px;
+    margin: 0 auto 0;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2.6s;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 40px;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .quote-attr {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    opacity: 0.6;
+  }
+
+  .no-data {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--text-dim);
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.8s;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes swellIn {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @media (max-width: 480px) {
+    .color-swatch { width: 90px; height: 90px; }
+    .proximity-message { font-size: 1.2rem; }
+    .divider-line { width: 40px; height: 1px; }
+    .comparison { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="intro" style="color:#d6d8d6;">Thank you again for contributing to this research.</div>
+  <div id="result-content"></div>
+</div>
+
+<script>
+  const hungerMap = {
+    'around sunrise':        { hex: '#005d9d' },
+    'around mid-morning':    { hex: '#08a600' },
+    'around noon':           { hex: '#FFD700' },
+    'mid-afternoon':         { hex: '#fb8c02' },
+    'around sunset':         { hex: '#cb0208' },
+    'in the evening':        { hex: '#6c1c68' },
+    'around midnight':       { hex: '#000000' },
+    'late night':            { hex: '#808080' },
+    "i don't know/it varies wildly": { hex: '#FF69B4' },
+  };
+
+  const favoriteMap = {
+    'blue':   '#005d9d',
+    'green':  '#08a600',
+    'yellow': '#FFD700',
+    'orange': '#fb8c02',
+    'red':    '#cb0208',
+    'purple': '#6c1c68',
+    'black':  '#000000',
+    'gray':   '#808080',
+    'grey':   '#808080',
+    'pink':   '#FF69B4',
+    'white':  '#FFFFFF',
+    'brown':  '#8B4513',
+  };
+
+  const exactPairs = [
+    ['around sunrise','blue'],['around mid-morning','green'],['around noon','yellow'],
+    ['mid-afternoon','orange'],['around sunset','red'],['in the evening','purple'],
+    ['around midnight','black'],['late night','gray'],["i don't know/it varies wildly",'pink'],
+  ];
+
+  const adjacentPairs = [
+    ['around sunrise','green'],['around sunrise','black'],['around sunrise','gray'],
+    ['around mid-morning','blue'],['around mid-morning','yellow'],
+    ['around noon','orange'],['around noon','green'],
+    ['mid-afternoon','red'],['mid-afternoon','yellow'],
+    ['around sunset','orange'],['around sunset','purple'],
+    ['in the evening','red'],['in the evening','black'],
+    ['around midnight','purple'],['around midnight','gray'],
+    ['late night','black'],['late night','blue'],
+  ];
+
+  function blendHex(h1, h2) {
+    const x = h => [parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16)];
+    const [r1,g1,b1] = x(h1 === '#000000' ? '#111111' : h1);
+    const [r2,g2,b2] = x(h2 === '#000000' ? '#111111' : h2);
+    const r = (r1+r2)>>1, g = (g1+g2)>>1, b = (b1+b2)>>1;
+    return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
+  }
+
+  function getProximityMessage(hungerKey, favoriteKey) {
+    const isExact = exactPairs.some(([h,c]) => h === hungerKey && c === favoriteKey);
+    const isAdjacent = adjacentPairs.some(([h,c]) => h === hungerKey && c === favoriteKey);
+    if (isExact) return 'Your hunger pattern and your favorite color are twins! You must be in the zone...';
+    if (isAdjacent) return 'Your hunger pattern and your favorite color are close neighbors. There is something here worth paying attention to.';
+    return 'Your hunger pattern and your favorite color are telling slightly different stories. This is exactly the kind of pattern we are interested in.';
+  }
+
+  function render() {
+    const params = new URLSearchParams(window.location.search);
+    const rawHunger   = (params.get('hunger') || '').toLowerCase().trim();
+    const rawFavorite = (params.get('color')  || '').toLowerCase().trim();
+
+    const hunger  = hungerMap[rawHunger];
+    const favHex  = favoriteMap[rawFavorite];
+    const content = document.getElementById('result-content');
+
+    if (!hunger && !favHex) {
+      content.innerHTML = `<div class="no-data">This page reveals your result after you complete the survey.<br><br><a href="https://tally.so/r/ODbLRA" style="color:#6c1c68;text-decoration:none;border-bottom:1px solid #6c1c68;font-family:'Raleway',sans-serif;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;">Take the survey</a></div>`;
+      return;
+    }
+
+    let html = '';
+
+    if (hunger && favHex) {
+      const blended = blendHex(hunger.hex, favHex);
+      const proximity = getProximityMessage(rawHunger, rawFavorite);
+
+      html += `
+        <div class="color-section">
+          <div class="color-label">We mapped your hunger pattern with your favorite color and here is the result:</div>
+          <div class="color-swatch" style="background:${blended}"></div>
+        </div>
+        <div class="comparison">
+          <div class="color-block">
+            <div class="swatch-small" style="background:${hunger.hex}"></div>
+            <div class="swatch-label">Hunger</div>
+          </div>
+          <div class="divider-line"></div>
+          <div class="color-block">
+            <div class="swatch-small" style="background:${favHex}"></div>
+            <div class="swatch-label">Favorite</div>
+          </div>
+        </div>
+        <div class="proximity-message" style="color:#d6d8d6;">${proximity}</div>`;
+    } else if (hunger) {
+      html += `
+        <div class="color-section">
+          <div class="color-label">We mapped your hunger pattern and here is the result:</div>
+          <div class="color-swatch" style="background:${hunger.hex}"></div>
+        </div>`;
+    }
+
+    html += `
+      <div class="footer-text">
+        This is an ongoing research project exploring the relationships between circadian biology, hunger timing, and color perception. As more data comes in, this result will become more precise, and show more specific patterns. For now it's mostly just fun :)<br><br>
+        <span style="color:#d6d8d6;">If you left your email, we will be in touch with updates. Otherwise, keep an eye on <a href="#" style="color:#d6d8d6;border-bottom:1px solid rgba(214,216,214,0.3);">[placeholder url]</a> where we will be posting results.</span>
+      </div>
+      <div class="quote">
+        <div class="quote-text">"One sometimes finds what one is not looking for. When I woke up just after dawn on Sept. 28, 1928, I certainly didn't plan to revolutionize all medicine by discovering the world's first antibiotic, or bacteria killer. But I guess that was exactly what I did."</div>
+        <div class="quote-attr">Alexander Fleming</div>
+      </div>`;
+
+    content.innerHTML = html;
+  }
+
+  render();
+</script>
+</body>
+</html>
